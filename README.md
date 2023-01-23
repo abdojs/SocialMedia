@@ -1,3 +1,5 @@
 # SocialMedia
 
-create a new social media object with : mren
+Create Application Web social media with : **MERN Stack**
+
+![This is an image](./mern.PNG)
