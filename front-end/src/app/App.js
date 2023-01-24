@@ -1,13 +1,10 @@
-import { useTranslation } from 'react-i18next';
-import { FaBeer } from 'react-icons/fa';
 import Box from '@mui/material/Box';
+import SingIn from '../pages/SingIn/SingIn';
 import './App.css';
 function App() {
-  const [t] = useTranslation()
   return (
     <Box className="App">
-      {t('title')}
-      <FaBeer />
+      <SingIn />
     </Box>
   );
 }
