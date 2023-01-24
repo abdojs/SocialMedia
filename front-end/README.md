@@ -39,4 +39,6 @@
     - i18next-browser-languagedetector ^7.0.1
     - react-i18next ^12.1.4
     - react-icons ^4.7.1
+    - react-hook-form ^7.42.1
+    - @mui/lab ^5.0.0-alpha.117
 ```
