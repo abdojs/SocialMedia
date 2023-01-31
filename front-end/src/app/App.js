@@ -1,6 +1,7 @@
-import { Routes, BrowserRouter, Route } from 'react-router-dom';
+import { Routes, BrowserRouter, Route, Outlet } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import SingIn from '../pages/SingIn/SingIn';
+import SingUp from '../pages/SingUp/SingUp';
 import Test from '../pages/tests/Test';
 import './App.css';
 function App() {
@@ -16,21 +17,16 @@ function App() {
     </Box>)
   }
   return (
-
-
-
-
     <Box className="amout" >
       <BrowserRouter>
-        <Routes>  
+        <Routes>
           <Route path='/' excat name="sing-in" element={<Home />} ></Route>
           <Route path='/account/login' name="sing-in" element={<SingIn />} ></Route>
-          <Route path='/account/create' name="sing-in" element={<SingIn />} ></Route>
-          <Route path='/test' name="sing-in" element={<Test />} ></Route>
+          <Route path='/account/create' name="sing-up" element={<SingUp />} ></Route>
           <Route path='*' name="sing-in" element={<Not />}></Route>
         </Routes>
       </BrowserRouter>
-    </Box>
+    </Box >
   );
 }
 

@@ -1,11 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { Box, TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
-function SingIn() {
-  const [loading, setLoading] = React.useState(true);
+function SingUp() {
+
+  console.log(process.env.REACT_APP_URL_FOLDER_ASSETS);
+
+  const [loading, setLoading] = useState(true);
   const {
     register,
     handleSubmit,
@@ -17,7 +20,6 @@ function SingIn() {
     console.log(data);
     setLoading(false);
   };
-
   return (
     <Box
       sx={{
@@ -44,7 +46,7 @@ function SingIn() {
               paddingBottom: 2,
             }}
           >
-            login
+            Create a new account
           </Box>
         </Box>
         <Box
@@ -60,8 +62,33 @@ function SingIn() {
           <Box sx={{ py: 1 }}>
             <TextField
               fullWidth
+              {...register("name", { required: true })}
+              id="name"
+              label="Full Name"
+              variant="outlined"
+              error={errors.name && true}
+              type="text"
+              required
+            />
+          </Box>
+          <Box>
+            <TextField
+              fullWidth
+              {...register("phone", { required: true })}
+              id="phone"
+              label="Number Phone"
+              variant="outlined"
+              error={errors.phone && true}
+              type="text"
+              required
+              style={{}}
+            />
+          </Box>
+          <Box sx={{ py: 1 }}>
+            <TextField
+              fullWidth
               {...register("email", { required: true })}
-              id="outlined-basic"
+              id="email"
               label="Email address"
               variant="outlined"
               error={errors.email && true}
@@ -74,7 +101,7 @@ function SingIn() {
               fullWidth
               {...register("password", { required: true })}
               id="outlined-basic"
-              label="Password"
+              label="password"
               variant="outlined"
               error={errors.password && true}
               type="password"
@@ -93,7 +120,7 @@ function SingIn() {
               name="submit"
               id="submit"
             >
-              <span>login</span>
+              <span>create account</span>
             </LoadingButton>
           </Box>
         </Box>
@@ -106,7 +133,7 @@ function SingIn() {
           }}
         >
           <Link
-            to="/account/create"
+            to="/account/login"
             style={{
               padding: "10px",
               marginTop: "10px",
@@ -118,7 +145,7 @@ function SingIn() {
               textAlign: "center",
             }}
           >
-            create account
+            login
           </Link>
         </Box>
       </Box>
@@ -126,4 +153,4 @@ function SingIn() {
   );
 }
 
-export default SingIn;
+export default SingUp;
