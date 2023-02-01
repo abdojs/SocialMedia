@@ -13,7 +13,8 @@ const searchReqBody = (body, mes, arr) => {
 
         if (err.length)
             throw {
-                message: ` ${mes} => ${err}`
+                success: false,
+                data: ` ${mes} => ${err}`
             }
     } catch (error) {
         throw error
