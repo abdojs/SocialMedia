@@ -8,7 +8,6 @@ const searchReqBody = require("./reqBody/search.filter")
 
 const singUp = (req, res, next) => {
 
-
     let arrayErrors = []
 
     try {
@@ -39,14 +38,12 @@ const singUp = (req, res, next) => {
             arrayErrors.push({ Phone, Message })
 
         if (arrayErrors.length)
-            throw { message: arrayErrors }
+            throw { success: false, data: arrayErrors }
 
         next()
     } catch (error) {
         res.status(400).json(error)
     }
-
-
 
 }
 
