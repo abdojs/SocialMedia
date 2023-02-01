@@ -3,7 +3,7 @@
 const lengthReqBody = (body, mes, number) => {
     try {
         if (Object.keys(body).length !== number) {
-            throw { message: mes }
+            throw { success: false, data: mes }
         }
     } catch (error) {
         throw error
