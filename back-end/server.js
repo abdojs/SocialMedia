@@ -19,8 +19,10 @@ app.use(morgan("common"));
 
 // routers in client 
 const createRouter = require("./routers/singUp/singUp.router");
+const loginRouter = require("./routers/singIn/singIn.router");
 
 app.use("/apis/account/create", createRouter);
+app.use("/apis/account/login", loginRouter);
 
 app.listen(8800, () => {
     console.log("Backend server is running!");
