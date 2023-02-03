@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 function SingUp() {
-
   console.log(process.env.REACT_APP_URL_FOLDER_ASSETS);
 
   const [loading, setLoading] = useState(true);
