@@ -2,11 +2,14 @@ const express = require("express");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const cors = require('cors')
 const path = require("path");
 const bodyParser = require('body-parser')
 const app = express();
 
 dotenv.config();
+
+app.use(cors())
 
 app.use("/images", express.static(path.join(__dirname, "public/uploads/images")));
 
