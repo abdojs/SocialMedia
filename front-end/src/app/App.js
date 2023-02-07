@@ -4,6 +4,7 @@ import { AuthContext } from "../context/Auth/Auth";
 import Box from '@mui/material/Box';
 import SingIn from '../pages/SingIn/SingIn';
 import SingUp from '../pages/SingUp/SingUp';
+import Error404 from '../pages/Errors/404';
 import './App.css';
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {writeRouter()}
-          <Route path='*' name="notfound" element={<Not />}></Route>
+          <Route path='*' name="notfound" element={<Error404 />}></Route>
         </Routes>
       </BrowserRouter>
     </Box >
@@ -38,12 +39,6 @@ function App() {
 }
 
 export default App;
-
-const Not = () => {
-  return (<Box >
-    opps ! 404 page not found
-  </Box>)
-}
 
 const Home = () => {
   return (<Box >
