@@ -17,12 +17,10 @@ function SingIn() {
 
   const onSubmit = async (data) => {
     await SendData(data, dispatch);
-    if (typeof error === "string") setOpen(false);
+    setOpen(false);
   };
 
   const alert = useCallback(() => {
-    console.log("useCallback");
-
     return (
       <Collapse in={!open}>
         <Alert
@@ -58,7 +56,11 @@ function SingIn() {
         backgroundColor: "#f0f2f4",
       }}
     >
-      <Box>
+      <Box
+        sx={{
+          width: { xs: "300px", sm: "380px", md: "480px" },
+        }}
+      >
         <Box>{alert()}</Box>
         <Box
           sx={{
@@ -87,7 +89,6 @@ function SingIn() {
             onSubmit={handleSubmit(onSubmit)}
             action="./kxxkkxkxkxkxkxx/x"
             component="form"
-            sx={{ width: { xs: "300px", sm: "380px", md: "480px" } }}
           >
             <Box sx={{ py: 1 }}>
               <TextField
