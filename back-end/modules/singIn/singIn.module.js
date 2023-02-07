@@ -33,7 +33,7 @@ const singIn = async ({ emailPhone, password }, withLogin) => {
 
             return {
                 type: true,
-                message: user,
+                message:  { _profilePicture, _email, _name, _profilePicture, _id },
                 status: 200,
             }
         })

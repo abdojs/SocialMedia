@@ -1,4 +1,6 @@
 import axios from "axios"
+import { setCookie } from "../../context/Auth/Cookie.js";
+
 const SendData = async (users, dispatchd, path = "login") => {
 
     dispatchd({ type: "LOGIN_START" });
@@ -7,16 +9,36 @@ const SendData = async (users, dispatchd, path = "login") => {
 
         const { data: { status, success, data } } = await axios.post(`${process.env.REACT_APP_URL_APIS}account/${path}`, users);
 
-        console.log({ status, success, data });
+        if (success === true && status === 200) {
 
-        if (success === true && status === 200)
-            return dispatchd({ type: "LOGIN_FAILURE", payload: data });
+            setCookie("ct_user", data._token, 14)
+            localStorage.setItem("user", JSON.stringify(data._user))
+            const resault = {
+                ct_token: data._token,
+                ct_user: data._user
+            }
 
-        if (success === false && status === 200)
-            return dispatchd({ type: "LOGIN_SUCCESS", payload: data });
+            dispatchd({ type: "LOGIN_SUCCESS", payload: resault });
+            return
+        }
+
+
+
 
     } catch (err) {
-        dispatchd({ type: "LOGIN_FAILURE", payload: err });
+
+        const { status } = err.response
+        let messageError;
+
+        if (status === 400)
+            messageError = "not valid email or number phone or password"
+        if (status === 500)
+            messageError = "something went wrong in processing rhe service"
+
+        dispatchd({ type: "LOGIN_FAILURE", payload: messageError });
+
+
+
     }
 }
 

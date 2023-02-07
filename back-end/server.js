@@ -27,6 +27,21 @@ const loginRouter = require("./routers/singIn/singIn.router");
 app.use("/apis/account/create", createRouter);
 app.use("/apis/account/login", loginRouter);
 
+const { verify } = require("./jsonWebToken/index");
+
+app.get("/apis/token/", (req, res) => {
+    console.log(req.header("Authorization"));
+
+
+    console.log(req.cookies);
+    return res.status(200).json({
+        data: {
+            token: verify(req.header("Authorization")),
+            co: req.cookies + "vavaa va va va v",
+        }
+    })
+});
 app.listen(8800, () => {
     console.log("Backend server is running!");
 });
+

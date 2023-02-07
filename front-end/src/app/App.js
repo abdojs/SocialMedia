@@ -1,5 +1,5 @@
 import { Fragment, useContext } from 'react';
-import { Routes, BrowserRouter, Route, Navigate } from 'react-router-dom';
+import { Routes, BrowserRouter, Route, Navigate, Link } from 'react-router-dom';
 import { AuthContext } from "../context/Auth/Auth";
 import Box from '@mui/material/Box';
 import SingIn from '../pages/SingIn/SingIn';
@@ -15,11 +15,12 @@ function App() {
         <Fragment>
           <Route path='/account/login' name="sing-in" element={<SingIn />} ></Route>
           <Route path='/account/create' name="sing-up" element={<SingUp />} ></Route>
-          <Route path='/' element={<Navigate to="/account/login" replace />} />
+          <Route path='/*' element={<Navigate to="/account/login" replace />} />
         </Fragment>)
     return (
       <Fragment>
         <Route path='/' excat name="sing-in" element={<Home />} ></Route>
+        <Route path='/fed' excat name="sing-in" element={<Fed />} ></Route>
         <Route path='/account/*' element={<Navigate to="/" replace />}  ></Route>
       </Fragment>)
   }
@@ -46,6 +47,14 @@ const Not = () => {
 
 const Home = () => {
   return (<Box >
+    <Link to="/fed">link to page fed</Link>
     page home
+  </Box>)
+}
+
+const Fed = () => {
+  return (<Box >
+    <Link to="/">link to page home</Link>
+    page fed
   </Box>)
 }
