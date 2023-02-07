@@ -6,7 +6,9 @@ import { useForm } from "react-hook-form";
 import SendData from "../../apis/POST/LoginCreate";
 import { AuthContext } from "../../context/Auth/Auth";
 import Alert from "@mui/material/Alert";
+import Title from "../../helpers/ChangeTitleDocument";
 function SingIn() {
+  Title("Login");
   const { isFetching, error, dispatch } = useContext(AuthContext);
   const [open, setOpen] = useState(true);
   const {
