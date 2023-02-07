@@ -1,7 +1,6 @@
-
+const { token } = require('../../jsonWebToken/index')
 
 const singUpModule = require('../../modules/singUp/singUp.modele');
-
 
 const singUp = async (req, res) => {
 
@@ -10,11 +9,17 @@ const singUp = async (req, res) => {
 
         const { type, status, message } = response
 
-        if (type && status === 201)
+        if (type && status === 201) {
+            const _token = token(message)
             return res.status(201).json({
                 success: true,
-                data: message
+                data: {
+                    _token: _token,
+                    _user: message
+                },
+                status: 201
             })
+        }
 
         if (!type && status === 400) {
 
@@ -32,7 +37,8 @@ const singUp = async (req, res) => {
                         message: `is really wrong `,
                         keyValue,
                         keyPattern
-                    }
+                    },
+                    status: 200
                 })
             if (!message.hasOwnProperty("code"))
                 return res.status(400).json({ success: message.hasOwnProperty("code"), error: message.message })

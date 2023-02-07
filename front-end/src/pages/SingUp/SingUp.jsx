@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { Box, TextField } from "@mui/material";
+import React, { useCallback, useContext, useState } from "react";
+import { Alert, Box, Collapse, IconButton, TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import SendData from "../../apis/POST/CreateAccount";
+import { AuthContext } from "../../context/Auth/Auth";
 
 function SingUp() {
-  const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(true);
+  const { isFetching, error, dispatch } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -13,9 +17,37 @@ function SingUp() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    setLoading(false);
+  const onSubmit = async (data) => {
+    await SendData(data, dispatch);
+    setOpen(false);
   };
+
+  const alert = useCallback(() => {
+    return (
+      <Collapse in={!open}>
+        <Alert
+          variant="outlined"
+          severity="error"
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              X
+            </IconButton>
+          }
+          sx={{ mb: 2 }}
+        >
+          {error}
+        </Alert>
+      </Collapse>
+    );
+  }, [open, error]);
+
   return (
     <Box
       sx={{
@@ -34,6 +66,7 @@ function SingUp() {
           backgroundColor: "#fff",
         }}
       >
+        <Box>{alert()}</Box>
         <Box>
           <Box
             component="h1"
@@ -111,8 +144,8 @@ function SingUp() {
               type="submit"
               variant="contained"
               size="large"
-              loading={!loading}
-              disabled={!loading}
+              loading={isFetching}
+              disabled={isFetching}
               name="submit"
               id="submit"
             >
