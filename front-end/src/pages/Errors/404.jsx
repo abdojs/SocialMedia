@@ -2,7 +2,10 @@ import React from "react";
 import { Box, capitalize, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
+import Title from "../../helpers/ChangeTitleDocument";
+
 const Error404 = () => {
+  Title("Not Found");
   return (
     <Box
       sx={{

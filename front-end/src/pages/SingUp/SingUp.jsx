@@ -5,11 +5,12 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import SendData from "../../apis/POST/CreateAccount";
 import { AuthContext } from "../../context/Auth/Auth";
+import Title from "../../helpers/ChangeTitleDocument";
 
 function SingUp() {
+  Title("Not Found");
   const [open, setOpen] = useState(true);
   const { isFetching, error, dispatch } = useContext(AuthContext);
-
   const {
     register,
     handleSubmit,
