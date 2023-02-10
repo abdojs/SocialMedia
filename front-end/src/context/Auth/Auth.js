@@ -4,11 +4,11 @@ import Reducer from "./Reducer";
 
 const getTokenCookie = getCookie("ct_user")
 
-const ct_user = typeof getTokenCookie === "string" && getCookie("ct_user") !== "" ? getTokenCookie : null;
-
+const ct_token = typeof getTokenCookie === "string" && getCookie("ct_user") !== "" ? getTokenCookie : null;
+const ct_user = JSON.parse(localStorage.getItem("user"))
 const INITIAL_STATE = {
-    token: ct_user || null,
-    user: null,
+    token: ct_token || null,
+    user: ct_user || null,
     isFetching: false,
     error: null,
 };
@@ -21,15 +21,14 @@ const AuthContextProvider = ({ children }) => {
 
     useEffect(() => {
 
-        // console.log(ct_user); // fetch data and insert in local storage
-
-        localStorage.setItem("user", JSON.stringify(state.user))
+        // console.log(ct_token); // fetch data and insert in local storage
 
     }, [state.user])
 
     return (
         <AuthContext.Provider value={{
-            user: state.token,
+            token: state.token,
+            user: state.user,
             isFetching: state.isFetching,
             error: state.error,
             dispatch,

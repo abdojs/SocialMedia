@@ -14,16 +14,29 @@ const singIn = async (req, res) => {
 
         const { type, status, message } = response
 
+        if (!type && status === 200) {
+
+            return res.status(status).json({
+                success: type,
+                data: {
+                    _user: message
+                },
+                status
+            })
+
+        }
+
         const _token = token(message)
 
         return res.status(status).json({
             success: type,
             data: {
-                _token: _token,
+                _token,
                 _user: message
             },
             status
         })
+
 
     } catch (error) {
         return res.status(500).json({ success: false, data: error.message })

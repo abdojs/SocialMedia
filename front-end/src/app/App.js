@@ -5,13 +5,14 @@ import Box from '@mui/material/Box';
 import SingIn from '../pages/SingIn/SingIn';
 import SingUp from '../pages/SingUp/SingUp';
 import Error404 from '../pages/Errors/404';
+import Profile from '../pages/Profile/Profile';
 import './App.css';
 function App() {
 
-  const { user } = useContext(AuthContext)
+  const { token } = useContext(AuthContext)
 
   const writeRouter = () => {
-    if (user === null)
+    if (token === null)
       return (
         <Fragment>
           <Route path='/account/login' name="sing-in" element={<SingIn />} ></Route>
@@ -22,6 +23,7 @@ function App() {
       <Fragment>
         <Route path='/' excat name="sing-in" element={<Home />} ></Route>
         <Route path='/fed' excat name="sing-in" element={<Fed />} ></Route>
+        <Route path='/profile/:nameUser' name="profile" element={<Profile />} ></Route>
         <Route path='/account/*' element={<Navigate to="/" replace />}  ></Route>
       </Fragment>)
   }

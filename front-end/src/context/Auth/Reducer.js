@@ -5,6 +5,7 @@ const Reducer = (state, action) => {
         ...state,
         isFetching: true,
       };
+
     case "LOGIN_SUCCESS":
       return {
         ...state,
