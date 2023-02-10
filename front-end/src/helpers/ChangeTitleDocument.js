@@ -1,8 +1,6 @@
 const Title = (name) => {
 
-    console.table(document.title);
-
-    document.title = name
+    document.title = name || "some title"
 
 }
 
