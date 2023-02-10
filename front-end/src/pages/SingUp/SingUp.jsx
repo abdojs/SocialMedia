@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/Auth/Auth";
 import Title from "../../helpers/ChangeTitleDocument";
 
 function SingUp() {
-  Title("Not Found");
+  Title("Create Account");
   const [open, setOpen] = useState(true);
   const { isFetching, error, dispatch } = useContext(AuthContext);
   const {

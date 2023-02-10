@@ -9,20 +9,29 @@ const SendData = async (users, dispatchd, path = "login") => {
 
         const { data: { status, success, data } } = await axios.post(`${process.env.REACT_APP_URL_APIS}account/${path}`, users);
 
+
+        console.log(data);
+
+        let _type = "";
+        let resault = ""
+
+        if (success === false && status === 200) {
+            _type = "LOGIN_FAILURE"
+            resault = data._user
+        }
+
         if (success === true && status === 200) {
 
+            _type = "LOGIN_SUCCESS"
             setCookie("ct_user", data._token, 14)
             localStorage.setItem("user", JSON.stringify(data._user))
-            const resault = {
+            resault = {
                 ct_token: data._token,
                 ct_user: data._user
             }
-
-            dispatchd({ type: "LOGIN_SUCCESS", payload: resault });
-            return
         }
 
-
+        dispatchd({ type: _type, payload: resault });
 
 
     } catch (err) {
